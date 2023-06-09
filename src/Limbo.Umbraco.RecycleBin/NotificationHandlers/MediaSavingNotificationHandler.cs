@@ -13,7 +13,7 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
 
         public void Handle(MediaSavingNotification notification) {
             foreach (var mediaItem in notification.SavedEntities) {
-                _logger.LogInformation(mediaItem.Id.ToString());
+                _logger.LogInformation("Saving " + mediaItem.Id.ToString());
             }
         }
 

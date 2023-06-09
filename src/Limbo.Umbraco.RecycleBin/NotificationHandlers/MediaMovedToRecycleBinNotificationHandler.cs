@@ -13,7 +13,7 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
 
         public void Handle(MediaMovedToRecycleBinNotification notification) {
             foreach (var mediaItem in notification.MoveInfoCollection) {
-                _logger.LogInformation(mediaItem.Entity.Id.ToString());
+                _logger.LogInformation("MovedToRecycleBin " + mediaItem.Entity.Id.ToString());
             }
         }
 
