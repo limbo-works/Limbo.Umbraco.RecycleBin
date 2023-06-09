@@ -14,8 +14,8 @@ namespace Limbo.Umbraco.RecycleBin.Scheduling
         private readonly ILogger<CleanUpTask> _logger;
         private readonly CleanUpService _cleanUpService;
 
-        private static TimeSpan Period => TimeSpan.FromMinutes(1);
-        private static TimeSpan Delay => TimeSpan.FromMinutes(1);
+        private static TimeSpan Period => TimeSpan.FromMinutes(60);
+        private static TimeSpan Delay => TimeSpan.FromMinutes(10);
 
         public CleanUpTask(IRuntimeState runtimeState, IServerRoleAccessor serverRoleAccessor, ILogger<CleanUpTask> logger, CleanUpService cleanUpService) : base(logger, Period, Delay) {
             _runtimeState = runtimeState;
@@ -28,7 +28,6 @@ namespace Limbo.Umbraco.RecycleBin.Scheduling
 
             // Don't do anything if the site is not running.
             if (_runtimeState.Level != RuntimeLevel.Run) {
-                _logger.LogInformation("Not running");
                 return Task.CompletedTask;
             }
 
@@ -36,10 +35,8 @@ namespace Limbo.Umbraco.RecycleBin.Scheduling
             // ONLY run for SchedulingPublisher server or Single server roles
             switch (_serverRoleAccessor.CurrentServerRole) {
                 case ServerRole.Subscriber:
-                    _logger.LogInformation("Not running - Subscriber");
                     return Task.CompletedTask; // We return Task.CompletedTask to try again as the server role may change!
                 case ServerRole.Unknown:
-                    _logger.LogInformation("Not running - Unknown");
                     return Task.CompletedTask; // We return Task.CompletedTask to try again as the server role may change! 
             }
 

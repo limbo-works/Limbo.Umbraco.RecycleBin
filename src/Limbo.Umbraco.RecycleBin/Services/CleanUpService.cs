@@ -9,11 +9,13 @@ namespace Limbo.Umbraco.RecycleBin.Services {
 
         private readonly ILogger<CleanUpService> _logger;
         private readonly IContentService _contentService;
+        private readonly IMediaService _mediaService;
         private readonly IOptions<CleanUpSettingRecycleBin> _cleanUpSettingRecycleBin;
 
-        public CleanUpService(ILogger<CleanUpService> logger, IContentService contentService, IOptions<CleanUpSettingRecycleBin> cleanUpSettingRecycleBin) {
+        public CleanUpService(ILogger<CleanUpService> logger, IContentService contentService, IMediaService mediaService, IOptions<CleanUpSettingRecycleBin> cleanUpSettingRecycleBin) {
             _logger = logger;
             _contentService = contentService;
+            _mediaService = mediaService;
             _cleanUpSettingRecycleBin = cleanUpSettingRecycleBin;
         }
 
@@ -21,13 +23,9 @@ namespace Limbo.Umbraco.RecycleBin.Services {
 
             try {
 
-                _logger.LogInformation("CleanUpContent Begin1");
-
                 if (!_cleanUpSettingRecycleBin.Value.Content.Enabled) {
                     return;
                 }
-
-                _logger.LogInformation("CleanUpContent Begin2");
 
                 if (!_contentService.RecycleBinSmells()) {
                     return;
@@ -37,7 +35,7 @@ namespace Limbo.Umbraco.RecycleBin.Services {
                 foreach (IContent item in items) {
                     if ((DateTime.Now - item.UpdateDate).Days > _cleanUpSettingRecycleBin.Value.Content.DeleteAfterDays) {
                         try {
-                            _logger.LogInformation("Deleted: " + item.Name);
+                            _logger.LogInformation("Permanently deleting content: " + item.Name + " " + item.Key.ToString());
                             _contentService.Delete(item);
                         } catch {
                         }
@@ -50,8 +48,31 @@ namespace Limbo.Umbraco.RecycleBin.Services {
         }
 
         internal void CleanUpMedia() {
-            _logger.LogInformation("CleanUpMedia Begin");
-            _logger.LogInformation("CleanUpMedia End");
+
+            try {
+
+                if (!_cleanUpSettingRecycleBin.Value.Media.Enabled) {
+                    return;
+                }
+
+                if (!_mediaService.RecycleBinSmells()) {
+                    return;
+                }
+
+                IEnumerable<IMedia> items = _mediaService.GetPagedMediaInRecycleBin(0, int.MaxValue, out long totalRecords);
+                foreach (IMedia item in items) {
+                    if ((DateTime.Now - item.UpdateDate).Days > _cleanUpSettingRecycleBin.Value.Media.DeleteAfterDays) {
+                        try {
+                            _logger.LogInformation("Permanently deleting media: " + item.Name + " " + item.Key.ToString());
+                            _mediaService.Delete(item);
+                        } catch {
+                        }
+                    }
+                }
+
+            } catch {
+            }
+
         }
     }
 }
