@@ -9,6 +9,8 @@ namespace Limbo.Umbraco.RecycleBin.Composers {
         public void Compose(IUmbracoBuilder builder) {
             builder.AddNotificationHandler<MediaSavingNotification, MediaSavingNotificationHandler>();
             builder.AddNotificationHandler<MediaSavedNotification, MediaSavedNotificationHandler>();
+            builder.AddNotificationHandler<MediaMovingToRecycleBinNotification, MediaMovingToRecycleBinNotificationHandler>();
+            builder.AddNotificationHandler<MediaMovedToRecycleBinNotification, MediaMovedToRecycleBinNotificationHandler>();
         }
 
     }
