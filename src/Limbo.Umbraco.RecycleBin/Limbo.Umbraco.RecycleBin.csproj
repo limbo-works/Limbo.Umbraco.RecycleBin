@@ -6,4 +6,41 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+	<PropertyGroup>
+		<VersionPrefix>1.0.0-alpha001</VersionPrefix>
+		<VersionSuffix Condition="'$(Configuration)'=='Debug'">$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
+		<Company>Limbo</Company>
+		<Authors>Thomas Nielsen</Authors>
+		<Copyright>Copyright © 2023</Copyright>
+		<Title>Limbo Umbraco RecycleBin</Title>
+	</PropertyGroup>
+
+	<!-- Information for the NuGet package -->
+	<PropertyGroup>
+		<PackageId>Limbo.Umbraco.RecycleBin</PackageId>
+		<PackageTags>Skybrud, Limbo, Umbraco, RecycleBin</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</PackageProjectUrl>
+		<PackageIcon>Limbo.png</PackageIcon>
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
+	</PropertyGroup>
+
+	<!-- Include NuGet dependencies -->
+	<ItemGroup>
+		<PackageReference Include="Umbraco.Cms.Core" Version="[10.0.0,12.0)" />
+		<PackageReference Include="Umbraco.Cms.Web.Website" Version="[10.0.0,12.0)" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="[10.0.0,12.0)" />
+	</ItemGroup>
+
+	<!-- Include package icon for NuGet -->
+	<ItemGroup>
+		<Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+	<!-- Generate XML documentation -->
+	<PropertyGroup>
+		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+	</PropertyGroup>
+
 </Project>
