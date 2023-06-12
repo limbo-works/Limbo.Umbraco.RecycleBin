@@ -18,8 +18,6 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
         public void Handle(MediaDeletingNotification notification) {
             foreach (var mediaItem in notification.DeletedEntities) {
 
-                _logger.LogInformation("Deleting " + mediaItem.Id.ToString());
-
                 try {
 
                     var filePath = mediaItem.GetValue<string>("umbracoFile");

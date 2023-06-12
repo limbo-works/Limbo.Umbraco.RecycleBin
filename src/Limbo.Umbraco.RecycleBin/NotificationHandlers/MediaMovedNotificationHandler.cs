@@ -18,8 +18,6 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
         public void Handle(MediaMovedNotification notification) {
             foreach (var mediaItem in notification.MoveInfoCollection) {
 
-                _logger.LogInformation("Moved " + mediaItem.Entity.Id.ToString());
-
                 try {
 
                     var filePath = mediaItem.Entity.GetValue<string>("umbracoFile");
@@ -38,7 +36,6 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
                 } catch {
 
                 }
-
 
             }
         }
