@@ -1,4 +1,4 @@
-# Limbo.Umbraco.RecycleBin
+# Limbo Recycle Bin [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.RecycleBin.svg)](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.RecycleBin.svg)](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin)
 
 **Limbo RecycleBin** helps you handle your Umbraco Recycle Bin.
 
