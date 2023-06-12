@@ -11,13 +11,13 @@
 This package is available for Umbraco 10+ via NuGet. To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.RecycleBin --version 1.0.0
+dotnet add package Limbo.Umbraco.RecycleBin --version 1.0.1
 ```
 
 or the older NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.RecycleBin -Version 1.0.0
+Install-Package Limbo.Umbraco.RecycleBin -Version 1.0.1
 ```
 
 
