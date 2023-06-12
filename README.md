@@ -3,7 +3,7 @@
 **Limbo RecycleBin** helps you handle your Umbraco Recycle Bin.
 
 - It automatically deletes items in the recycle bin that were deleted x days ago. Both content og media.
-- It physical moves trashed items so that they are not available to download.
+- It physical moves trashed media items so that they are not available to download.
 
 
 ## Configuration
