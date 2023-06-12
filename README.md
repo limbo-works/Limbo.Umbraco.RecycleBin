@@ -1,5 +1,11 @@
 # Limbo.Umbraco.RecycleBin
 
+**Limbo RecycleBin** helps you handle your Umbraco Recycle Bin.
+
+- It automatically deletes items in the recycle bin that were deleted x days ago. Both content og media.
+- It physical moves trashed media items so that they are not available to download.
+
+
 ## Configuration
 
 To configure the package, add a `Limbo:RecycleBin` section to your `appsettings.json` like in the example below:
