@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json.Linq;
 using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.Notifications;
@@ -23,6 +24,12 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
                     var filePath = mediaItem.Entity.GetValue<string>("umbracoFile");
                     if (filePath == null) {
                         return;
+                    }
+
+                    try {
+                        dynamic data = JObject.Parse(filePath);
+                        filePath = Convert.ToString(data.src);
+                    } catch {
                     }
 
                     var fileExists = _mediaFileManager.FileSystem.FileExists(filePath);
