@@ -10,12 +10,12 @@ using Umbraco.Cms.Core.Hosting;
 namespace Limbo.Umbraco.RecycleBin.Composers {
     public class CleanUpComposer : IComposer {
         public void Compose(IUmbracoBuilder builder) {
-            builder.Services.AddOptions<CleanUpSettingRecycleBin>().Configure<IConfiguration, IHostingEnvironment>(ConfigureBinder);
+            builder.Services.AddOptions<CleanUpSettingsRecycleBin>().Configure<IConfiguration, IHostingEnvironment>(ConfigureBinder);
             builder.Services.AddSingleton<CleanUpService>();
             builder.Services.AddHostedService<CleanUpTask>();
         }
 
-        private void ConfigureBinder(CleanUpSettingRecycleBin cleanUpSettingRecycleBin, IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
+        private void ConfigureBinder(CleanUpSettingsRecycleBin cleanUpSettingsRecycleBin, IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
 
             var limboRecycleBinContentSection = configuration.GetSection("Limbo:RecycleBin:Content");
             var limboRecycleBinMediaSection = configuration.GetSection("Limbo:RecycleBin:Media");
@@ -33,10 +33,10 @@ namespace Limbo.Umbraco.RecycleBin.Composers {
                 int.TryParse(contentDeleteAfterDays, out contentDeleteAfterDaysInt);
             }
 
-            CleanUpSetting cleanUpSettingContent = new CleanUpSetting();
-            cleanUpSettingContent.Enabled = contentEnabledBool;
-            cleanUpSettingContent.DeleteAfterDays = contentDeleteAfterDaysInt;
-            cleanUpSettingRecycleBin.Content = cleanUpSettingContent;
+            CleanUpSettings cleanUpSettingsContent = new CleanUpSettings();
+            cleanUpSettingsContent.Enabled = contentEnabledBool;
+            cleanUpSettingsContent.DeleteAfterDays = contentDeleteAfterDaysInt;
+            cleanUpSettingsRecycleBin.Content = cleanUpSettingsContent;
 
 
             var mediaEnabled = limboRecycleBinMediaSection?.GetSection("Enabled")?.Value;
@@ -51,10 +51,10 @@ namespace Limbo.Umbraco.RecycleBin.Composers {
                 int.TryParse(mediaDeleteAfterDays, out mediaDeleteAfterDaysInt);
             }
 
-            CleanUpSetting cleanUpSettingMedia = new CleanUpSetting();
-            cleanUpSettingMedia.Enabled = mediaEnabledBool;
-            cleanUpSettingMedia.DeleteAfterDays = mediaDeleteAfterDaysInt;
-            cleanUpSettingRecycleBin.Media = cleanUpSettingMedia;
+            CleanUpSettings cleanUpSettingsMedia = new CleanUpSettings();
+            cleanUpSettingsMedia.Enabled = mediaEnabledBool;
+            cleanUpSettingsMedia.DeleteAfterDays = mediaDeleteAfterDaysInt;
+            cleanUpSettingsRecycleBin.Media = cleanUpSettingsMedia;
 
         }
     }

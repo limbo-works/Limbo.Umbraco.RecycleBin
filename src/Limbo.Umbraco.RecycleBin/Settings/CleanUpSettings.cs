@@ -1,9 +1,9 @@
 ﻿namespace Limbo.Umbraco.RecycleBin.Settings {
-    public class CleanUpSetting {
+    public class CleanUpSettings {
 
         public bool Enabled { get; internal set; } = false;
 
-        public int DeleteAfterDays { get; internal set; } = 1;
+        public int DeleteAfterDays { get; internal set; } = 30;
 
     }
 }
