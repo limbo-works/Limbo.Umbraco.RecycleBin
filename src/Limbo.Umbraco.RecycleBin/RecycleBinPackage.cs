@@ -12,7 +12,7 @@ namespace Limbo.Umbraco.RecycleBin {
         /// <summary>
         /// Gets the friendly name of the package.
         /// </summary>
-        public const string Name = "Limbo RecycleBin";
+        public const string Name = "Limbo Recycle Bin";
 
         /// <summary>
         /// Gets the version of the package.
