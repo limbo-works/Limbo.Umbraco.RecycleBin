@@ -6,6 +6,21 @@
 - It physical moves trashed media items so that they are not available to download.
 
 
+## Installation
+
+This package is available for Umbraco 10+ via NuGet. To install the package, you can use either .NET CLI:
+
+```
+dotnet add package Limbo.Umbraco.RecycleBin --version 1.0.0
+```
+
+or the older NuGet Package Manager:
+
+```
+Install-Package Limbo.Umbraco.RecycleBin -Version 1.0.0
+```
+
+
 ## Configuration
 
 To configure the package, add a `Limbo:RecycleBin` section to your `appsettings.json` like in the example below:
