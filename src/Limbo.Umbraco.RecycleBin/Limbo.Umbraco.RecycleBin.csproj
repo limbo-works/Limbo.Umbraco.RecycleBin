@@ -20,7 +20,7 @@
 		<PackageId>Limbo.Umbraco.RecycleBin</PackageId>
 		<PackageTags>Skybrud, Limbo, Umbraco, RecycleBin, Umbraco-Marketplace</PackageTags>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/v1/</PackageProjectUrl>
+		<PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.recyclebin/v1/</PackageProjectUrl>
 		<PackageIcon>Limbo.png</PackageIcon>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
