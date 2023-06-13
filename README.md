@@ -1,6 +1,6 @@
 # Limbo Recycle Bin [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE.md) [![NuGet](https://img.shields.io/nuget/vpre/Limbo.Umbraco.RecycleBin.svg)](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin) [![NuGet](https://img.shields.io/nuget/dt/Limbo.Umbraco.RecycleBin.svg)](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin) [![Umbraco Marketplace](https://img.shields.io/badge/umbraco-marketplace-%233544B1)](https://marketplace.umbraco.com/package/limbo.umbraco.recyclebin)
 
-**Limbo RecycleBin** helps you handle your Umbraco Recycle Bin.
+**Limbo Recycle Bin** helps you handle your Umbraco recycle bin.
 
 - It automatically deletes items in the recycle bin that were deleted x days ago. Both content og media.
 - It physical moves trashed media items so that they are not available to download.
