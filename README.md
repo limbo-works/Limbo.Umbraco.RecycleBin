@@ -13,7 +13,6 @@
 
 ## Installation
 
-This package is available for Umbraco 10+ via NuGet. To install the package, you can use either .NET CLI:
 The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin/13.0.0). To install the package, you can use either .NET CLI:
 
 ```
