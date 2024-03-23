@@ -22,7 +22,7 @@ namespace Limbo.Umbraco.RecycleBin {
         /// <summary>
         /// Gets the informational version of the package.
         /// </summary>
-        public static readonly string InformationalVersion = FileVersionInfo.GetVersionInfo(typeof(RecycleBinPackage).Assembly.Location).ProductVersion!;
+        public static readonly string InformationalVersion = FileVersionInfo.GetVersionInfo(typeof(RecycleBinPackage).Assembly.Location).ProductVersion!.Split('+')[0];
 
         /// <summary>
         /// Gets the semantic version of the package.
