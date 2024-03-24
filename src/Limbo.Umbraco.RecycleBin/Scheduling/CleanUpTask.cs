@@ -37,7 +37,7 @@ namespace Limbo.Umbraco.RecycleBin.Scheduling
                 case ServerRole.Subscriber:
                     return Task.CompletedTask; // We return Task.CompletedTask to try again as the server role may change!
                 case ServerRole.Unknown:
-                    return Task.CompletedTask; // We return Task.CompletedTask to try again as the server role may change! 
+                    return Task.CompletedTask; // We return Task.CompletedTask to try again as the server role may change!
             }
 
             try {

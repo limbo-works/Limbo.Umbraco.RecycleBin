@@ -33,7 +33,7 @@ namespace Limbo.Umbraco.RecycleBin.Services {
 
                 IEnumerable<IContent> items = _contentService.GetPagedContentInRecycleBin(0, int.MaxValue, out long totalRecords);
                 foreach (IContent item in items) {
-                    if ((DateTime.Now - item.UpdateDate).Days > _cleanUpSettingsRecycleBin.Value.Content.DeleteAfterDays) {
+                    if ((DateTime.Now - item.UpdateDate).Days >= _cleanUpSettingsRecycleBin.Value.Content.DeleteAfterDays) {
                         try {
                             _logger.LogInformation("Permanently deleting content: " + item.Name + " " + item.Key.ToString());
                             _contentService.Delete(item);
@@ -61,7 +61,7 @@ namespace Limbo.Umbraco.RecycleBin.Services {
 
                 IEnumerable<IMedia> items = _mediaService.GetPagedMediaInRecycleBin(0, int.MaxValue, out long totalRecords);
                 foreach (IMedia item in items) {
-                    if ((DateTime.Now - item.UpdateDate).Days > _cleanUpSettingsRecycleBin.Value.Media.DeleteAfterDays) {
+                    if ((DateTime.Now - item.UpdateDate).Days >= _cleanUpSettingsRecycleBin.Value.Media.DeleteAfterDays) {
                         try {
                             _logger.LogInformation("Permanently deleting media: " + item.Name + " " + item.Key.ToString());
                             _mediaService.Delete(item);
