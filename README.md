@@ -16,13 +16,13 @@
 The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin/13.0.0). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.RecycleBin --version 13.0.0
+dotnet add package Limbo.Umbraco.RecycleBin --version 13.0.1
 ```
 
 or the older NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.RecycleBin -Version 13.0.0
+Install-Package Limbo.Umbraco.RecycleBin -Version 13.0.1
 ```
 
 **Umbraco 10-12**  
