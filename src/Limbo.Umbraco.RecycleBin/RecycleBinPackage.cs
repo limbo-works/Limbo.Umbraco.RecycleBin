@@ -39,15 +39,5 @@ namespace Limbo.Umbraco.RecycleBin {
         /// </summary>
         public const string IssuesUrl = "https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/issues";
 
-        /// <summary>
-        /// Gets the website URL of the package.
-        /// </summary>
-        //public const string WebsiteUrl = "https://packages.skybrud.dk/skybrud.umbraco.griddata/v5/";
-
-        /// <summary>
-        /// Gets the URL of the documentation for this package.
-        /// </summary>
-        //public const string DocumentationUrl = "https://packages.skybrud.dk/skybrud.umbraco.griddata/v5/docs/";
-
     }
 }
