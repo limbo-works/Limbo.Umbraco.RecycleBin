@@ -1,7 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using Newtonsoft.Json.Linq;
-using Umbraco.Cms.Core.Events;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using Umbraco.Cms.Core.IO;
+using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Notifications;
 using Umbraco.Extensions;
 
@@ -17,22 +18,27 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
         }
 
         public void Handle(MediaDeletingNotification notification) {
-            foreach (var mediaItem in notification.DeletedEntities) {
+            foreach (IMedia mediaItem in notification.Entities) {
 
                 try {
 
-                    var filePath = mediaItem.GetValue<string>("umbracoFile");
+                    string? filePath = mediaItem.GetValue<string>("umbracoFile");
                     if (filePath == null) {
                         return;
                     }
 
-                    try {
-                        dynamic data = JObject.Parse(filePath);
-                        filePath = Convert.ToString(data.src);
-                    } catch {
+                    if (filePath.TrimStart().StartsWith('{')) {
+                        try {
+                            JsonNode? node = JsonNode.Parse(filePath);
+                            string? src = node?["src"]?.GetValue<string>();
+                            if (!string.IsNullOrEmpty(src)) {
+                                filePath = src;
+                            }
+                        } catch (JsonException) {
+                        }
                     }
 
-                    var fileExists = _mediaFileManager.FileSystem.FileExists(filePath + ".deleted");
+                    bool fileExists = _mediaFileManager.FileSystem.FileExists(filePath + ".deleted");
                     if (!fileExists) {
                         return;
                     }

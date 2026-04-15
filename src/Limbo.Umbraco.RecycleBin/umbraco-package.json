@@ -1,0 +1,7 @@
+{
+  "$schema": "https://json.schemastore.org/umbraco-package.json",
+  "name": "Limbo Recycle Bin",
+  "id": "Limbo.Umbraco.RecycleBin",
+  "version": "17.0.0",
+  "allowTelemetry": true
+}
