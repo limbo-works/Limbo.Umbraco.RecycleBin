@@ -27,6 +27,14 @@
 		<RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
 	</PropertyGroup>
 
+  <!-- Include additional metadata in the assembly -->
+  <ItemGroup>
+    <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.recyclebin/" />
+    <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.recyclebin/docs/v17/" />
+    <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin" />
+    <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.recyclebin" />
+  </ItemGroup>
+
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Umbraco.Cms.Infrastructure" Version="[17.0.0,17.999)" />
