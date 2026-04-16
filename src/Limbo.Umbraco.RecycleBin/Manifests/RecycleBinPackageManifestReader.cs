@@ -9,6 +9,7 @@ namespace Limbo.Umbraco.RecycleBin.Manifests {
 
             List<PackageManifest> manifests = [
                 new PackageManifest {
+                    Id = RecycleBinPackage.Alias,
                     Name = RecycleBinPackage.Name,
                     AllowTelemetry = true,
                     Version = RecycleBinPackage.InformationalVersion,
