@@ -27,11 +27,6 @@
 		<RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
 	</PropertyGroup>
 
-	<!-- Embed the Umbraco package manifest -->
-	<ItemGroup>
-		<EmbeddedResource Include="umbraco-package.json" />
-	</ItemGroup>
-
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<PackageReference Include="Umbraco.Cms.Infrastructure" Version="[17.0.0,17.999)" />

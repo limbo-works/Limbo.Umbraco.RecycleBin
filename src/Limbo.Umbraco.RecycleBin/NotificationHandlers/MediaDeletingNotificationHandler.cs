@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using Umbraco.Cms.Core.Events;
 using Umbraco.Cms.Core.IO;
 using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Notifications;
@@ -18,7 +19,7 @@ namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
         }
 
         public void Handle(MediaDeletingNotification notification) {
-            foreach (IMedia mediaItem in notification.Entities) {
+            foreach (IMedia mediaItem in notification.DeletedEntities) {
 
                 try {
 
