@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+using System.Diagnostics;
 using Umbraco.Cms.Core.Semver;
 
 namespace Limbo.Umbraco.RecycleBin {

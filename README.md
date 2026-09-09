@@ -7,23 +7,26 @@
 
 **Limbo Recycle Bin** helps you handle your Umbraco recycle bin.
 
-- It automatically deletes items in the recycle bin that were deleted x days ago. Both content og media.
+- It automatically deletes items in the recycle bin that were deleted x days ago. Both content and media.
 - It physical moves trashed media items so that they are not available to download.
 
 
 ## Installation
 
-The Umbraco 13 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin/13.0.0). To install the package, you can use either .NET CLI:
+The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin/17.0.0). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.RecycleBin --version 13.0.1
+dotnet add package Limbo.Umbraco.RecycleBin --version 17.0.0
 ```
 
 or the older NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.RecycleBin -Version 13.0.1
+Install-Package Limbo.Umbraco.RecycleBin -Version 17.0.0
 ```
+
+**Umbraco 13**  
+For the Umbraco 13 version of this package, see the [**v13/main**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v13/main) branch instead.
 
 **Umbraco 10-12**  
 For the Umbraco 10-12 version of this package, see the [**v1/main**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v1/main) branch instead.

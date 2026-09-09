@@ -1,4 +1,5 @@
-﻿using Limbo.Umbraco.RecycleBin.Scheduling;
+﻿using Limbo.Umbraco.RecycleBin.Manifests;
+using Limbo.Umbraco.RecycleBin.Scheduling;
 using Limbo.Umbraco.RecycleBin.Services;
 using Limbo.Umbraco.RecycleBin.Settings;
 using Microsoft.Extensions.Configuration;
@@ -6,13 +7,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Hosting;
+using Umbraco.Cms.Infrastructure.Manifest;
+using Umbraco.Extensions;
+
 
 namespace Limbo.Umbraco.RecycleBin.Composers {
     public class CleanUpComposer : IComposer {
         public void Compose(IUmbracoBuilder builder) {
+            builder.Services.AddSingleton<IPackageManifestReader, RecycleBinPackageManifestReader>();
             builder.Services.AddOptions<CleanUpSettingsRecycleBin>().Configure<IConfiguration, IHostingEnvironment>(ConfigureBinder);
             builder.Services.AddSingleton<CleanUpService>();
-            builder.Services.AddHostedService<CleanUpTask>();
+            builder.Services.AddRecurringBackgroundJob<CleanUpTask>();
         }
 
         private void ConfigureBinder(CleanUpSettingsRecycleBin cleanUpSettingsRecycleBin, IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
