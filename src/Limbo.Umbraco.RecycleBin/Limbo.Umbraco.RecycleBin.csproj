@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
 	<PropertyGroup>
@@ -12,28 +13,34 @@
 		<Company>Limbo</Company>
 		<Authors>Thomas Nielsen</Authors>
 		<Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
-		<Title>Limbo Recycle Bin</Title>
-		<NoWarn>$(NoWarn);CS1591</NoWarn>
+    <Product>Limbo Recycle Bin</Product>
+    <Title>$(Product)</Title>
 	</PropertyGroup>
 
 	<!-- Information for the NuGet package -->
 	<PropertyGroup>
-		<PackageId>Limbo.Umbraco.RecycleBin</PackageId>
-		<PackageTags>Skybrud, Limbo, Umbraco, RecycleBin, Umbraco-Marketplace</PackageTags>
-		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.recyclebin/v1/</PackageProjectUrl>
-		<PackageIcon>Limbo.png</PackageIcon>
-		<RepositoryType>git</RepositoryType>
-		<RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
-	</PropertyGroup>
+    <PackageId>Limbo.Umbraco.RecycleBin</PackageId>
+    <PackageTags>Skybrud, Limbo, Umbraco, RecycleBin, Umbraco-Marketplace</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://packages.limbo.works/limbo.umbraco.recyclebin/v1/</PackageProjectUrl>
+    <PackageIcon>Limbo.png</PackageIcon>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/limbo-works/Limbo.Umbraco.RecycleBin</RepositoryUrl>
+  </PropertyGroup>
 
   <!-- Include additional metadata in the assembly -->
   <ItemGroup>
+    <AssemblyMetadata Include="Authors" Value="$(Authors)" />
     <AssemblyMetadata Include="PackageProjectUrl" Value="https://packages.limbo.works/limbo.umbraco.recyclebin/" />
     <AssemblyMetadata Include="DocumentationUrl" Value="https://packages.limbo.works/limbo.umbraco.recyclebin/docs/v17/" />
     <AssemblyMetadata Include="NuGetUrl" Value="https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin" />
     <AssemblyMetadata Include="UmbracoMarketplaceUrl" Value="https://marketplace.umbraco.com/package/limbo.umbraco.recyclebin" />
   </ItemGroup>
+
+  <!-- Ignore vulnerabilities from transient dependencies -->
+  <PropertyGroup>
+    <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
 
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
