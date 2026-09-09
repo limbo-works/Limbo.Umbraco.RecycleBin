@@ -7,18 +7,18 @@
     <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
-	<PropertyGroup>
-		<VersionPrefix>17.0.0-alpha000</VersionPrefix>
-		<VersionSuffix Condition="'$(Configuration)'=='Debug'">$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
-		<Company>Limbo</Company>
-		<Authors>Thomas Nielsen</Authors>
-		<Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
+  <PropertyGroup>
+    <VersionPrefix>17.0.0-alpha000</VersionPrefix>
+    <VersionSuffix Condition="'$(Configuration)'=='Debug'">$([System.DateTime]::UtcNow.ToString(`yyyyMMddHHmm`))</VersionSuffix>
+    <Company>Limbo</Company>
+    <Authors>Thomas Nielsen</Authors>
+    <Copyright>Copyright © $([System.DateTime]::UtcNow.ToString(`yyyy`))</Copyright>
     <Product>Limbo Recycle Bin</Product>
     <Title>$(Product)</Title>
-	</PropertyGroup>
+  </PropertyGroup>
 
-	<!-- Information for the NuGet package -->
-	<PropertyGroup>
+  <!-- Information for the NuGet package -->
+  <PropertyGroup>
     <PackageId>Limbo.Umbraco.RecycleBin</PackageId>
     <PackageTags>Skybrud, Limbo, Umbraco, RecycleBin, Umbraco-Marketplace</PackageTags>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -42,20 +42,20 @@
     <NuGetAuditMode>direct</NuGetAuditMode>
   </PropertyGroup>
 
-	<!-- Include NuGet dependencies -->
-	<ItemGroup>
-		<PackageReference Include="Umbraco.Cms.Infrastructure" Version="[17.0.0,17.999)" />
-		<PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.999)" />
-	</ItemGroup>
+  <!-- Include NuGet dependencies -->
+  <ItemGroup>
+    <PackageReference Include="Umbraco.Cms.Infrastructure" Version="[17.0.0,17.999)" />
+    <PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.999)" />
+  </ItemGroup>
 
-	<!-- Include package icon for NuGet -->
-	<ItemGroup>
-		<Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
-	</ItemGroup>
+  <!-- Include package icon for NuGet -->
+  <ItemGroup>
+    <Content Include="../build/Limbo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
-	<!-- Generate XML documentation -->
-	<PropertyGroup>
-		<DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
-	</PropertyGroup>
+  <!-- Generate XML documentation -->
+  <PropertyGroup>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
+  </PropertyGroup>
 
 </Project>
