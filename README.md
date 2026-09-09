@@ -10,26 +10,59 @@
 - It automatically deletes items in the recycle bin that were deleted x days ago. Both content and media.
 - It physical moves trashed media items so that they are not available to download.
 
+<table>
+  <tr>
+    <td><strong>License:</strong></td>
+    <td><a href="https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/blob/v17/main/LICENSE.md"><strong>MIT License</strong></a></td>
+  </tr>
+  <tr>
+    <td><strong>Umbraco:</strong></td>
+    <td>
+      Umbraco 17
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Target Framework:</strong></td>
+    <td>
+      .NET 10
+    </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+<br /><br />
 
 ## Installation
+
+### Umbraco 17
 
 The Umbraco 17 version of this package is only available via [**NuGet**](https://www.nuget.org/packages/Limbo.Umbraco.RecycleBin). To install the package, you can use either .NET CLI:
 
 ```
-dotnet add package Limbo.Umbraco.RecycleBin --version 17.0.0-alpha000
+dotnet add package Limbo.Umbraco.RecycleBin --version 17.0.0-alpha001
 ```
 
-or the older NuGet Package Manager:
+or the NuGet Package Manager:
 
 ```
-Install-Package Limbo.Umbraco.RecycleBin -Version 17.0.0-alpha000
+Install-Package Limbo.Umbraco.RecycleBin -Version 17.0.0-alpha001
 ```
 
-**Umbraco 13**  
-For the Umbraco 13 version of this package, see the [**v13/main**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v13/main) branch instead.
+### Other versions of Umbraco
 
-**Umbraco 10-12**  
-For the Umbraco 10-12 version of this package, see the [**v1/main**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v1/main) branch instead.
+- [**`v13/main`**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v13/main) Umbraco 13
+- ~~[**`v1/main`**](https://github.com/limbo-works/Limbo.Umbraco.RecycleBin/tree/v1/main) Umbraco 10, 11 and 12~~ <sub title="Umbraco 10, 11 and 12 have reached end-of-life"><sup>(EOL)</sup></sub>
+
+
+
+
+<br /><br />
 
 ## Configuration
 
