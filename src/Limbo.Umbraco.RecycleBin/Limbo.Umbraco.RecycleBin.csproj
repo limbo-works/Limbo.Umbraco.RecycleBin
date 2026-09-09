@@ -59,4 +59,10 @@
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\$(AssemblyName).xml</DocumentationFile>
   </PropertyGroup>
 
+  <!-- Include custom appsettings schema -->
+  <ItemGroup>
+    <None Include="appsettings-schema.Limbo.Umbraco.RecycleBin.json" Pack="true" PackagePath="" />
+    <None Include="buildTransitive\Limbo.Umbraco.RecycleBin.targets" Pack="true" PackagePath="buildTransitive\" />
+  </ItemGroup>
+
 </Project>
