@@ -1,9 +1,9 @@
-﻿namespace Limbo.Umbraco.RecycleBin.Settings {
-    public class CleanUpSettingsRecycleBin {
+﻿namespace Limbo.Umbraco.RecycleBin.Settings;
 
-        public CleanUpSettings Content { get; set; } = new();
+public class CleanUpSettingsRecycleBin {
 
-        public CleanUpSettings Media { get; set; } = new();
+    public CleanUpSettings Content { get; set; } = new();
 
-    }
+    public CleanUpSettings Media { get; set; } = new();
+
 }

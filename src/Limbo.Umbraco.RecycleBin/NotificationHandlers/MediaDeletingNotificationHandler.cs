@@ -7,52 +7,52 @@ using Umbraco.Cms.Core.Models;
 using Umbraco.Cms.Core.Notifications;
 using Umbraco.Extensions;
 
-namespace Limbo.Umbraco.RecycleBin.NotificationHandlers {
-    public class MediaDeletingNotificationHandler : INotificationHandler<MediaDeletingNotification> {
+namespace Limbo.Umbraco.RecycleBin.NotificationHandlers;
 
-        private readonly ILogger<MediaDeletingNotificationHandler> _logger;
-        private readonly MediaFileManager _mediaFileManager;
+public class MediaDeletingNotificationHandler : INotificationHandler<MediaDeletingNotification> {
 
-        public MediaDeletingNotificationHandler(ILogger<MediaDeletingNotificationHandler> logger, MediaFileManager mediaFileManager) {
-            _logger = logger;
-            _mediaFileManager = mediaFileManager;
-        }
+    private readonly ILogger<MediaDeletingNotificationHandler> _logger;
+    private readonly MediaFileManager _mediaFileManager;
 
-        public void Handle(MediaDeletingNotification notification) {
-            foreach (IMedia mediaItem in notification.DeletedEntities) {
+    public MediaDeletingNotificationHandler(ILogger<MediaDeletingNotificationHandler> logger, MediaFileManager mediaFileManager) {
+        _logger = logger;
+        _mediaFileManager = mediaFileManager;
+    }
 
-                try {
+    public void Handle(MediaDeletingNotification notification) {
+        foreach (IMedia mediaItem in notification.DeletedEntities) {
 
-                    string? filePath = mediaItem.GetValue<string>("umbracoFile");
-                    if (filePath == null) {
-                        return;
-                    }
+            try {
 
-                    if (filePath.TrimStart().StartsWith('{')) {
-                        try {
-                            JsonNode? node = JsonNode.Parse(filePath);
-                            string? src = node?["src"]?.GetValue<string>();
-                            if (!string.IsNullOrEmpty(src)) {
-                                filePath = src;
-                            }
-                        } catch (JsonException) {
-                        }
-                    }
-
-                    bool fileExists = _mediaFileManager.FileSystem.FileExists(filePath + ".deleted");
-                    if (!fileExists) {
-                        return;
-                    }
-
-                    _mediaFileManager.FileSystem.CopyFile(filePath + ".deleted", filePath);
-                    _mediaFileManager.FileSystem.DeleteFile(filePath + ".deleted");
-
-                } catch {
-
+                string? filePath = mediaItem.GetValue<string>("umbracoFile");
+                if (filePath == null) {
+                    return;
                 }
 
-            }
-        }
+                if (filePath.TrimStart().StartsWith('{')) {
+                    try {
+                        JsonNode? node = JsonNode.Parse(filePath);
+                        string? src = node?["src"]?.GetValue<string>();
+                        if (!string.IsNullOrEmpty(src)) {
+                            filePath = src;
+                        }
+                    } catch (JsonException) {
+                    }
+                }
 
+                bool fileExists = _mediaFileManager.FileSystem.FileExists(filePath + ".deleted");
+                if (!fileExists) {
+                    return;
+                }
+
+                _mediaFileManager.FileSystem.CopyFile(filePath + ".deleted", filePath);
+                _mediaFileManager.FileSystem.DeleteFile(filePath + ".deleted");
+
+            } catch {
+
+            }
+
+        }
     }
+
 }
