@@ -44,6 +44,7 @@
 
   <!-- Include NuGet dependencies -->
   <ItemGroup>
+    <PackageReference Include="Skybrud.Essentials" Version="1.1.69" />
     <PackageReference Include="Umbraco.Cms.Infrastructure" Version="[17.0.0,17.999)" />
     <PackageReference Include="Umbraco.Cms.Core" Version="[17.0.0,17.999)" />
   </ItemGroup>

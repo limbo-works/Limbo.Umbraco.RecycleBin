@@ -1,9 +1,10 @@
 ﻿using Limbo.Umbraco.RecycleBin.Manifests;
+using Limbo.Umbraco.RecycleBin.Models.Settings;
 using Limbo.Umbraco.RecycleBin.Scheduling;
 using Limbo.Umbraco.RecycleBin.Services;
-using Limbo.Umbraco.RecycleBin.Settings;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Skybrud.Essentials.Configuration;
 using Umbraco.Cms.Core.Composing;
 using Umbraco.Cms.Core.DependencyInjection;
 using Umbraco.Cms.Core.Hosting;
@@ -17,51 +18,41 @@ public class CleanUpComposer : IComposer {
 
     public void Compose(IUmbracoBuilder builder) {
         builder.Services.AddSingleton<IPackageManifestReader, RecycleBinPackageManifestReader>();
-        builder.Services.AddOptions<CleanUpSettingsRecycleBin>().Configure<IConfiguration, IHostingEnvironment>(ConfigureBinder);
-        builder.Services.AddSingleton<CleanUpService>();
+        builder.Services.AddOptions<RecycleBinSettings>().Configure<IConfiguration, IHostingEnvironment>(ConfigureBinder);
+        builder.Services.AddSingleton<RecycleBinService>();
         builder.Services.AddRecurringBackgroundJob<CleanUpTask>();
     }
 
-    private void ConfigureBinder(CleanUpSettingsRecycleBin cleanUpSettingsRecycleBin, IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
+    private void ConfigureBinder(RecycleBinSettings settings, IConfiguration configuration, IHostingEnvironment hostingEnvironment) {
+        ConfigureContent(settings, configuration);
+        ConfigureMedia(settings, configuration);
+    }
 
-        var limboRecycleBinContentSection = configuration.GetSection("Limbo:RecycleBin:Content");
-        var limboRecycleBinMediaSection = configuration.GetSection("Limbo:RecycleBin:Media");
+    private static void ConfigureContent(RecycleBinSettings settings, IConfiguration configuration) {
 
+        IConfigurationSection section = configuration.GetSection("Limbo:RecycleBin:Content");
 
-        var contentEnabled = limboRecycleBinContentSection?.GetSection("Enabled")?.Value;
-        bool contentEnabledBool = false;
-        if (!string.IsNullOrWhiteSpace(contentEnabled)) {
-            bool.TryParse(contentEnabled, out contentEnabledBool);
+        if (section.TryGetBoolean("Enabled", out bool enabled)) {
+            settings.Content.Enabled = enabled;
         }
 
-        var contentDeleteAfterDays = limboRecycleBinContentSection?.GetSection("DeleteAfterDays")?.Value;
-        int contentDeleteAfterDaysInt = 30;
-        if (!string.IsNullOrWhiteSpace(contentDeleteAfterDays)) {
-            int.TryParse(contentDeleteAfterDays, out contentDeleteAfterDaysInt);
+        if (section.TryGetInt32("DeleteAfterDays", out int deleteAfterDays) && deleteAfterDays > 0) {
+            settings.Content.DeleteAfterDays = deleteAfterDays;
         }
 
-        CleanUpSettings cleanUpSettingsContent = new CleanUpSettings();
-        cleanUpSettingsContent.Enabled = contentEnabledBool;
-        cleanUpSettingsContent.DeleteAfterDays = contentDeleteAfterDaysInt;
-        cleanUpSettingsRecycleBin.Content = cleanUpSettingsContent;
+    }
 
+    private static void ConfigureMedia(RecycleBinSettings settings, IConfiguration configuration) {
 
-        var mediaEnabled = limboRecycleBinMediaSection?.GetSection("Enabled")?.Value;
-        bool mediaEnabledBool = false;
-        if (!string.IsNullOrWhiteSpace(mediaEnabled)) {
-            bool.TryParse(mediaEnabled, out mediaEnabledBool);
+        IConfigurationSection section = configuration.GetSection("Limbo:RecycleBin:Media");
+
+        if (section.TryGetBoolean("Enabled", out bool enabled)) {
+            settings.Media.Enabled = enabled;
         }
 
-        var mediaDeleteAfterDays = limboRecycleBinMediaSection?.GetSection("DeleteAfterDays")?.Value;
-        int mediaDeleteAfterDaysInt = 30;
-        if (!string.IsNullOrWhiteSpace(mediaDeleteAfterDays)) {
-            int.TryParse(mediaDeleteAfterDays, out mediaDeleteAfterDaysInt);
+        if (section.TryGetInt32("DeleteAfterDays", out int deleteAfterDays) && deleteAfterDays > 0) {
+            settings.Media.DeleteAfterDays = deleteAfterDays;
         }
-
-        CleanUpSettings cleanUpSettingsMedia = new CleanUpSettings();
-        cleanUpSettingsMedia.Enabled = mediaEnabledBool;
-        cleanUpSettingsMedia.DeleteAfterDays = mediaDeleteAfterDaysInt;
-        cleanUpSettingsRecycleBin.Media = cleanUpSettingsMedia;
 
     }
 

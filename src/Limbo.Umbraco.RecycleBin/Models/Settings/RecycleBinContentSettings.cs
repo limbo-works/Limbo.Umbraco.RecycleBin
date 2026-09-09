@@ -1,6 +1,6 @@
-﻿namespace Limbo.Umbraco.RecycleBin.Settings;
+﻿namespace Limbo.Umbraco.RecycleBin.Models.Settings;
 
-public class CleanUpSettings {
+public class RecycleBinContentSettings {
 
     public bool Enabled { get; set; } = false;
 

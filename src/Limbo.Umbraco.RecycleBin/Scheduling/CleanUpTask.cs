@@ -11,7 +11,7 @@ public class CleanUpTask : IRecurringBackgroundJob {
 
     private readonly IRuntimeState _runtimeState;
     private readonly ILogger<CleanUpTask> _logger;
-    private readonly CleanUpService _cleanUpService;
+    private readonly RecycleBinService _recycleBinService;
 
     public TimeSpan Period => TimeSpan.FromMinutes(60);
 
@@ -21,10 +21,10 @@ public class CleanUpTask : IRecurringBackgroundJob {
 
     public event EventHandler PeriodChanged { add { } remove { } }
 
-    public CleanUpTask(IRuntimeState runtimeState, ILogger<CleanUpTask> logger, CleanUpService cleanUpService) {
+    public CleanUpTask(IRuntimeState runtimeState, ILogger<CleanUpTask> logger, RecycleBinService recycleBinService) {
         _runtimeState = runtimeState;
         _logger = logger;
-        _cleanUpService = cleanUpService;
+        _recycleBinService = recycleBinService;
     }
 
     public Task RunJobAsync() {
@@ -35,8 +35,8 @@ public class CleanUpTask : IRecurringBackgroundJob {
         }
 
         try {
-            _cleanUpService.CleanUpContent();
-            _cleanUpService.CleanUpMedia();
+            _recycleBinService.CleanUpContent();
+            _recycleBinService.CleanUpMedia();
         } catch (Exception ex) {
             _logger.LogError(ex, "CleanUp failed.");
         }
